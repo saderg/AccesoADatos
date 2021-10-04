@@ -1,5 +1,8 @@
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
@@ -30,9 +33,10 @@ public class Alaeatorios {
 		escribirAleatorio();
 		
 		accederUnEmpleado();
-		introducirEmpleado();
 		System.out.println("---------------------------------------------------------------------");
-		leerAleatorio();
+		introducirEmpleado();
+		
+		
 		
 		
 		//para a�adir regsitros a partir del ultimo insertado hemps de poscionar el puntero 
@@ -198,7 +202,25 @@ public class Alaeatorios {
 			raf.writeUTF(apellidos);
 			raf.writeInt(departamento); // inserta departamento
 			raf.writeDouble(salarioEmpleado);
+			
+			try {
+				FileInputStream fis=new FileInputStream("Empleados.dat");
+					 
+	            	int valor=fis.read();
+		            while(valor!=-1){ // 
+		                System.out.print((char)valor);
+		                valor=fis.read();
+		            }
+		 
+				
+				fis.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (IOException e) {
+				e.printStackTrace();
 			}
+			
+		}
 		
 		else {
 			
